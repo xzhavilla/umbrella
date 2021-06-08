@@ -29,6 +29,7 @@ library
       Blend
       Chromosome.FLC
       Context
+      Debug
       Fitness
       Gene.Bit
       Gene.Digit

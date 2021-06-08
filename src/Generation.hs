@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleInstances #-}
 
 module Generation where
 
@@ -8,6 +9,7 @@ import Control.Monad.Reader (asks, runReader)
 import Control.Monad.State (runStateT, state)
 import Data.Function ((&))
 import Data.Functor ((<&>))
+import Debug (Debug (Debug))
 import Fitness (Fitness)
 import Gene.Bit (Bit)
 import Individual (Individual (Individual))
@@ -18,13 +20,11 @@ import System.Random (StdGen, mkStdGen)
 
 data Generation a = Generation Int (Population a)
 
-newtype VerboseGeneration a = VerboseGeneration (Generation a)
-
 instance (Ord a, Show a) => Show (Generation a) where
   show gen@(Generation n xs) = prefix gen ++ show n ++ "#\t" ++ show (best xs)
 
-instance (Ord a, Show a) => Show (VerboseGeneration a) where
-  show (VerboseGeneration gen@(Generation n xs)) = show xs ++ "\n" ++ show gen
+instance (Ord a, Show a) => Show (Debug (Generation a)) where
+  show (Debug gen@(Generation _ xs)) = show xs ++ "\n" ++ show gen
 
 -- >>> initial (\_ -> minBound) `runStateT` mkStdGen 0 `runReader` Context FLC 3 10 :: (Generation (FLC Bit), StdGen)
 -- (>¦  0#	[ # # # ]	(-Infinity),2 40692)
