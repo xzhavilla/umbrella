@@ -5,6 +5,7 @@
 
 module Population where
 
+import Blend (blend)
 import Context (pSelection)
 import Control.Monad.Reader (asks)
 import Data.Function ((&))
@@ -14,7 +15,6 @@ import Fitness (Fitness (Fitness))
 import GHC.Float (int2Float)
 import Individual (Individual (Individual), isSolution)
 import List (unzipAdjacent, zipAdjacent)
-import Mix (mix)
 import Mutation (Mutation, mutate)
 
 newtype Population a = Population [Individual a]
@@ -45,7 +45,7 @@ select (Population xs) = do
 
 crossOver (Population xs) =
   zipAdjacent xs
-    & traverse mix
+    & traverse blend
     <&> unzipAdjacent
     <&> Population
 

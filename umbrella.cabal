@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Binary
+      Blend
       Chromosome.FLC
       Context
       Fitness
@@ -35,7 +36,6 @@ library
       Individual
       Lib
       List
-      Mix
       Mutation
       Population
       Random

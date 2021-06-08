@@ -3,12 +3,12 @@
 
 module Chromosome.FLC where
 
+import Blend (Blend, blend)
 import Control.Monad.State (runState, state)
 import Data.Function ((&))
 import Data.Functor ((<&>))
 import Data.List.Index (setAt)
 import Gene.Bit (Bit (One, Zero))
-import Mix (Mix, mix)
 import Mutation (Mutation, mutate)
 import RandomAccess (RandomAccess, randomIndex)
 import System.Random (mkStdGen, random, randomR)
@@ -16,8 +16,8 @@ import System.Random (mkStdGen, random, randomR)
 newtype FLC a = FLC [a]
   deriving (Eq, Foldable)
 
-instance Mix (FLC a) where
-  mix (flc@(FLC as), FLC bs) = do
+instance Blend (FLC a) where
+  blend (flc@(FLC as), FLC bs) = do
     i <- state $ randomIndex flc
     let cs = take i bs ++ drop i as
     let ds = take i as ++ drop i bs

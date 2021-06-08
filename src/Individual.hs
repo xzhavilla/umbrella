@@ -3,18 +3,18 @@
 
 module Individual where
 
+import Blend (Blend, blend)
 import Data.Bifunctor (bimap)
 import Data.Functor ((<&>))
 import Fitness (Fitness)
-import Mix (Mix, mix)
 import Mutation (Mutation, mutate)
 
 data Individual a = Individual Fitness a
   deriving (Eq, Foldable, Functor, Traversable)
 
-instance Mix a => Mix (Individual a) where
-  mix (Individual _ a, Individual _ b) =
-    mix (a, b)
+instance Blend a => Blend (Individual a) where
+  blend (Individual _ a, Individual _ b) =
+    blend (a, b)
       <&> bimap (Individual minBound) (Individual minBound)
 
 instance Mutation a => Mutation (Individual a) where
