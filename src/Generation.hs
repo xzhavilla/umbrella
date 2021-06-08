@@ -3,20 +3,16 @@
 
 module Generation where
 
-import Chromosome.FLC (FLC (FLC))
-import Context (Context (Context), chromosomeSize, chromosomeType, pMutation, populationSize)
-import Control.Monad.Reader (asks, runReader)
-import Control.Monad.State (runStateT, state)
+import Context (chromosomeSize, chromosomeType, pMutation, populationSize)
+import Control.Monad.Reader (asks)
+import Control.Monad.State (state)
 import Data.Function ((&))
 import Data.Functor ((<&>))
 import Debug (Debug (Debug))
-import Fitness (Fitness)
-import Gene.Bit (Bit)
 import Individual (Individual (Individual))
-import Mutation (Mutation, mutate)
+import Mutation (mutate)
 import Population (Population (Population), best, crossOver, fit, hasSolution, select)
 import Random (randomNM)
-import System.Random (StdGen, mkStdGen)
 
 data Generation a = Generation Int (Population a)
 

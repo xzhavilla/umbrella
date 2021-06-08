@@ -28,6 +28,8 @@ dependencies:
 
 library:
   source-dirs: src
+  ghc-options:
+    - -Wunused-imports
 
 executables:
   umbrella-exe:
@@ -37,6 +39,7 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+      - -Wunused-imports
     dependencies:
       - umbrella
     when:
@@ -51,6 +54,7 @@ tests:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+      - -Wunused-imports
     dependencies:
       - umbrella
     when:
