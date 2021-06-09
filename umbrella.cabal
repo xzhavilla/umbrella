@@ -71,11 +71,16 @@ executable umbrella-exe
 test-suite umbrella-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
+  other-modules:
+      RandomSpec
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wunused-imports
   build-depends:
-      base >=4.7 && <5
+      QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , hspec-contrib
     , ilist
     , mtl
     , random

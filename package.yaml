@@ -56,6 +56,9 @@ tests:
       - -with-rtsopts=-N
       - -Wunused-imports
     dependencies:
+      - QuickCheck
+      - hspec
+      - hspec-contrib
       - umbrella
     when:
       - condition: false
